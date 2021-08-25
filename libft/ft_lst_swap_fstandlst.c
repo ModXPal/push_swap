@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ft_lst_swap_fstandlst.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/24 16:48:41 by rcollas           #+#    #+#             */
-/*   Updated: 2021/08/24 21:59:04 by rcollas          ###   ########.fr       */
+/*   Created: 2021/08/15 20:44:49 by rcollas           #+#    #+#             */
+/*   Updated: 2021/08/16 14:12:18 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/libft.h"
 
-void	ft_lstadd_front(t_list **alst, t_list *new)
+void	lst_swap_firstandlast(t_list **lst)
 {
-	if (!alst || !new)
-		return ;
-	printf("new before = %d \n", new->content);
-	printf("alst before = %d \n", (*alst)->content);
-	new->next = *alst;
-	printf("new after= %d \n", new->content);
-	*alst = new;
-	printf("alst after = %d \n", (*alst)->content);
+	t_list	*last_cell;
+	t_list	*next_to_last;
+
+	next_to_last = *lst;
+	last_cell = ft_lstlast(*lst);
+	while (next_to_last->next->next)
+		next_to_last = next_to_last->next;
+	next_to_last->next = *lst;
+	last_cell->next = (*lst)->next;
+	(*lst)->next = NULL;
+	*lst = last_cell;
 }

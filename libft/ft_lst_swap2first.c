@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ft_lst_swap2first.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/24 16:48:41 by rcollas           #+#    #+#             */
-/*   Updated: 2021/08/24 21:59:04 by rcollas          ###   ########.fr       */
+/*   Created: 2021/08/16 13:53:48 by rcollas           #+#    #+#             */
+/*   Updated: 2021/08/16 14:12:03 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/libft.h"
 
-void	ft_lstadd_front(t_list **alst, t_list *new)
+void	ft_lst_swap2first(t_list **lst)
 {
-	if (!alst || !new)
+	t_list	*first_cell;
+	t_list	*scnd_cell;
+	t_list	*third_cell;
+
+	first_cell = *lst;
+	scnd_cell = (*lst)->next;
+	third_cell = scnd_cell->next;
+	if (ft_lstsize(*lst) < 2)
 		return ;
-	printf("new before = %d \n", new->content);
-	printf("alst before = %d \n", (*alst)->content);
-	new->next = *alst;
-	printf("new after= %d \n", new->content);
-	*alst = new;
-	printf("alst after = %d \n", (*alst)->content);
+	*lst = scnd_cell;
+	(*lst)->next = first_cell;
+	first_cell->next = third_cell;
 }
