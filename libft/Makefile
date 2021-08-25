@@ -45,6 +45,7 @@ BONUS		= ft_lstnew.c\
 			  ft_lst_swap_fstandlst.c\
 			  ft_lst_swap2first.c\
 			  ft_lst_push.c\
+			  ft_lstnext_to_last.c\
 
 OBJS		= $(SRCS:.c=.o)
 

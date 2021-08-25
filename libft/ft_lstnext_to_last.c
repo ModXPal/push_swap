@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lst_push.c                                      :+:      :+:    :+:   */
+/*   ft_lstnext_to_last.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/16 14:50:55 by rcollas           #+#    #+#             */
-/*   Updated: 2021/08/25 11:18:20 by rcollas          ###   ########.fr       */
+/*   Created: 2021/08/25 09:36:32 by rcollas           #+#    #+#             */
+/*   Updated: 2021/08/25 11:18:22 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/libft.h"
 
-void	ft_lstpush(t_list **first_lst, t_list *scnd_list)
+t_list	*ft_lstnext_to_last(t_list *lst)
 {
-	if (!*first_lst)
-		*first_lst = ft_lstnew(scnd_list->content);
-	else
-		ft_lstadd_front(first_lst, scnd_list);
+	if (!lst)
+		return (NULL);
+	while (lst->next)
+	{
+		if (lst->next->next == NULL)
+			return (lst);
+		lst = lst->next;
+	}
+	return (lst);
 }

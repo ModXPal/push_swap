@@ -6,7 +6,7 @@
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 16:53:53 by rcollas           #+#    #+#             */
-/*   Updated: 2021/08/24 21:59:09 by rcollas          ###   ########.fr       */
+/*   Updated: 2021/08/25 11:18:23 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void		ft_lstiter(t_list *lst, void (*f)(int));
 void		lst_swap_firstandlast(t_list **lst);
 void		ft_lst_swap2first(t_list **lst);
 void		ft_lstpush(t_list **first_list, t_list *scnd_list);
+t_list		*ft_lstnext_to_last(t_list *lst);
 t_list		*ft_lstlast(t_list *lst);
 t_list		*ft_lstmap(t_list *lst, int (*f)(int), void (*del)(int));
 t_list		*ft_lstnew(int nb);
