@@ -9,6 +9,10 @@ LIBFT_LIB=		libft.a
 INCLUDE_PATH=	include/
 
 SRC_FILES=		src/test.c \
+				src/swap.c \
+				src/push.c \
+				src/rotate.c \
+				src/reverse_rotate.c \
 
 SRC_OBJS=		${SRC_FILES:.c=.o}
 
