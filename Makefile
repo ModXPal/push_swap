@@ -8,7 +8,7 @@ LIBFT_LIB=		libft.a
 
 INCLUDE_PATH=	include/
 
-SRC_FILES=		src/test.c \
+SRC_FILES=		src/main.c \
 				src/swap.c \
 				src/push.c \
 				src/rotate.c \
