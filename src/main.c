@@ -6,19 +6,7 @@
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 17:16:31 by rcollas           #+#    #+#             */
-/*   Updated: 2021/08/28 17:47:20 by rcollas          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/12 13:57:39 by rcollas           #+#    #+#             */
-/*   Updated: 2021/08/28 17:15:27 by rcollas          ###   ########.fr       */
+/*   Updated: 2021/08/28 18:36:16 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,21 +179,15 @@ int	main(int argc, char **argv)
 {
 	t_list	*pile_a;
 	t_list	*pile_b;
-	t_list	*tmp;
-	int		i;
 	int		lst_size;
-	int		wait;
 	int		min;
 	int		median;
 	int		max_b;
 
 	pile_a = NULL;
 	pile_b = NULL;
-	i = 0;
-	wait = 1;
 	create_pile_a(&pile_a, argc, argv);
 	median = get_median(pile_a);
-	tmp = pile_a;
 	lst_size = ft_lstsize(pile_a);
 	while (ft_lstsize(pile_b) < lst_size / 2)
 	{
@@ -214,6 +196,7 @@ int	main(int argc, char **argv)
 		else
 			ra(&pile_a);
 	}
+	//print_pile(pile_a, pile_b);
 	min = get_min(pile_a);
 	while (pile_a && is_sorted(pile_a) == FALSE)
 	{
@@ -224,7 +207,7 @@ int	main(int argc, char **argv)
 			min = get_min(pile_a);
 	}
 	max_b = get_max(pile_b);
-	while (pile_b /*&& is_sorted(pile_b) == FALSE*/)
+	while (pile_b)
 	{
 		while (pile_b->content < max_b)
 			rb(&pile_b);
@@ -234,5 +217,5 @@ int	main(int argc, char **argv)
 	}
 	while (pile_b)
 		pa(&pile_a, &pile_b);
-	print_pile(pile_a, pile_b);
+	//print_pile(pile_a, pile_b);
 }
