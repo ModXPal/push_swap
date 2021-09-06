@@ -6,7 +6,7 @@
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 11:22:09 by rcollas           #+#    #+#             */
-/*   Updated: 2021/08/25 11:28:20 by rcollas          ###   ########.fr       */
+/*   Updated: 2021/08/31 18:07:15 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ra(t_list **pile_a)
 {
+	if (!(*pile_a)->next)
+		return ;
 	t_list	*first;
 
 	first = *pile_a;
@@ -25,6 +27,8 @@ void	ra(t_list **pile_a)
 
 void	rb(t_list **pile_b)
 {
+	if (!(*pile_b)->next)
+		return ;
 	t_list	*first;
 
 	first = *pile_b;
@@ -36,6 +40,8 @@ void	rb(t_list **pile_b)
 
 void	rr(t_list **pile_a, t_list **pile_b)
 {
+	if (!(*pile_a)->next || !(*pile_b)->next)
+		return ;
 	t_list	*first_a;
 	t_list	*first_b;
 

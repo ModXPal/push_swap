@@ -2,6 +2,9 @@
 # define PUSH_SWAP_H
 
 # define FALSE 0
+# define TRUE 1
+# define DO_RR 1
+# define DO_R 0
 #include "../libft/includes/libft.h"
 #include <stdio.h>
 
