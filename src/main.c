@@ -6,7 +6,7 @@
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 17:16:31 by rcollas           #+#    #+#             */
-/*   Updated: 2021/09/06 18:40:51 by rcollas          ###   ########.fr       */
+/*   Updated: 2021/09/07 15:28:58 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,44 +18,14 @@ void	create_pile_a(t_list **pile_a, int argc, char **argv)
 	t_list *tmp;
 
 	i = 0;
-	while (++i < argc)
+	(void)argc;
+	argv = ft_split(*argv, ' ');
+	while (argv[i])
 	{
+		printf("argv = %s \n", argv[i]);
 		tmp = ft_lstnew(ft_atoi(argv[i]));
 		ft_lstadd_back(pile_a, tmp);
-	}
-}
-
-void	sort_pile_a(t_list **pile)
-{
-	int	sorted;
-
-	sorted = 1;
-	while (sorted)
-	{
-		if ((*pile)->content > ft_lstlast(*pile)->content)
-			ra(pile);
-		else if ((*pile)->content > (*pile)->next->content)
-			sa(pile);
-		else
-			sorted = 0;
-	}
-}
-
-void	sort_pile_b(t_list **pile)
-{
-	int	sorted;
-
-	sorted = 1;
-	while (sorted)
-	{
-		if ((*pile)->content < ft_lstlast(*pile)->content)
-			ra(pile);
-		//else if ((*pile)->content > ft_lstlast(*pile)->content)
-		//	rra(pile);
-		else if ((*pile)->content < (*pile)->next->content)
-			sa(pile);
-		else
-			sorted = 0;
+		i++;
 	}
 }
 
@@ -132,16 +102,18 @@ int		is_min(t_list *pile_a, t_list *pile_b)
 	return (1);
 }
 
-int		get_min(t_list *pile_a)
+int		get_min(t_list *pile)
 {
 	int	min;
 
-	min = pile_a->content;
-	while (pile_a)
+	if (!pile)
+		return (0);
+	min = pile->content;
+	while (pile)
 	{
-		if (pile_a->content < min)
-			min = pile_a->content;
-		pile_a = pile_a->next;
+		if (pile->content < min)
+			min = pile->content;
+		pile = pile->next;
 	}
 	return (min);
 }
@@ -214,7 +186,7 @@ int		cut_in_fifth(t_list *pile)
 	min = get_min(pile);
 	new_min = get_max(pile);
 	start = pile;
-	while (i < 47)
+	while (i < 5)
 	{
 		while (pile)
 		{
@@ -225,7 +197,7 @@ int		cut_in_fifth(t_list *pile)
 		pile = start;
 		min = new_min;
 		i++;
-		if (i != 47)
+		if (i != 5)
 			new_min = get_max(pile);
 	}
 	return (new_min);
@@ -287,6 +259,82 @@ int	b_shorter_path(t_list *pile, int	max)
 		return (DO_R);
 }
 
+void	first_pass(t_list **pile_a, t_list **pile_b, int chunk, int i)
+{
+	while (*pile_a)
+	{
+		if (shorter_path(*pile_a, chunk) == DO_RR)
+		{
+			while ((*pile_a)->content > chunk)
+				rra(pile_a);
+		}
+		else if (shorter_path(*pile_a, chunk) == DO_R)
+		{
+			while ((*pile_a)->content > chunk)
+				ra(pile_a);
+		}
+		if ((*pile_a)->content < get_min(*pile_b))
+		{
+			pb(pile_a, pile_b);
+			rb(pile_b);
+		}
+		else
+			pb(pile_a, pile_b);
+		if (i++ == 5 && *pile_a)
+		{
+			i = 1;
+			chunk = cut_in_fifth(*pile_a);
+		}
+	}
+}
+
+int	is_digit(char c)
+{
+	return (c >= '0' && c <= '9');
+}
+
+int	check_argument(int ac, char **av)
+{
+	int i;
+	int j;
+
+	i = 1;
+	j = 0;
+	while (i < ac)
+	{
+		while (av[i] && is_digit(av[i][j]))
+		{
+			if (av[i][j] == ' ')
+				j++;
+			if (is_digit(av[i][j]) == FALSE)
+				return (0);
+			j++;
+		}
+		i++;
+		ac--;
+	}
+	return (1);
+}
+
+void	get_argument(int ac, char **av)
+{
+	int i;
+	char **tmp;
+
+	i = 0;
+	tmp = av;
+	*av = "";
+	while (i++ < ac)
+	{
+		printf ("tmp = %s \n", tmp[i]);
+		tmp[i] = ft_strjoin(tmp[i], " ");
+		*av = ft_strjoin(*av, tmp[i]);
+		i++;
+	}
+	av = tmp;
+	printf ("av = %s \n", *av);
+}
+
 int	main(int argc, char **argv)
 {
 	t_list	*pile_a;
@@ -299,41 +347,16 @@ int	main(int argc, char **argv)
 	pile_a = NULL;
 	pile_b = NULL;
 	i = 1;
+	if (check_argument(argc, argv) == FALSE)
+		return (0);
+	get_argument(argc, argv);
 	create_pile_a(&pile_a, argc, argv);
+	print_pile(pile_a, pile_b);
 	chunk = cut_in_fifth(pile_a);
 	lst_size = ft_lstsize(pile_a);
 	if (is_sorted(pile_a))
 		return (0);
-	printf("chunk = %d \n", chunk);
-	while (pile_a)
-	{
-		if (shorter_path(pile_a, chunk) == DO_RR)
-		{
-			while (pile_a->content > chunk)
-				rra(&pile_a);
-		}
-		else if (shorter_path(pile_a, chunk) == DO_R)
-		{
-			while (pile_a->content > chunk)
-				ra(&pile_a);
-		}
-		if (pile_b)
-			max_b = get_min(pile_b);
-		if (pile_b && pile_a->content < max_b)
-		{
-			pb(&pile_a, &pile_b);
-			rb(&pile_b);
-		}
-		else
-			pb(&pile_a, &pile_b);
-		i++;
-		if (i == 47)
-		{
-			i = 1;
-			chunk= cut_in_fifth(pile_a);
-		}
-	}
-	max_b = get_max(pile_b);
+	first_pass(&pile_a, &pile_b, chunk, i);
 	/*
 	while (pile_b)
 	{
@@ -346,6 +369,7 @@ int	main(int argc, char **argv)
 	*/
 	//print_pile(pile_a, pile_b);
 	///*
+	max_b = get_max(pile_b);
 	while (pile_b)
 	{
 		if (b_shorter_path(pile_b, max_b) == DO_RR)
