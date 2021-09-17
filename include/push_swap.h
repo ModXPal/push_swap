@@ -6,7 +6,7 @@
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:49:06 by rcollas           #+#    #+#             */
-/*   Updated: 2021/09/17 17:19:48 by rcollas          ###   ########.fr       */
+/*   Updated: 2021/09/17 17:38:19 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	sort_two(t_list **pile_a);
 void	sort_three(t_list **pile_a);
 void	sort_five(t_list **pile_a, t_list **pile_b);
 void	create_pile_a(t_list **pile_a, int argc, char **argv);
+void	big_sort(t_list **pile_a, t_list **pile_b);
+void	number_to_top(t_list **pile_a, int chunk);
 int		get_min(t_list *pile);
 int		get_max(t_list *pile);
 int		is_digit(char c);
@@ -45,5 +47,8 @@ int		is_sorted(t_list *pile);
 int		min_shorter_path(t_list *pile, int min);
 int		max_shorter_path(t_list *pile, int max);
 int		check_input(t_list **pile_a, char **argv, int arg);
+int		get_chunk_size(int lst_size);
+int		get_chunk(t_list *pile, int size);
+int		shorter_path(t_list *pile, int chunk);
 
 #endif

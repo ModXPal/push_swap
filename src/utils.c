@@ -6,7 +6,7 @@
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:38:10 by rcollas           #+#    #+#             */
-/*   Updated: 2021/09/17 17:19:47 by rcollas          ###   ########.fr       */
+/*   Updated: 2021/09/17 17:38:18 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,19 +62,15 @@ int	is_sorted(t_list *pile)
 	return (0);
 }
 
-void	create_pile_a(t_list **pile_a, int argc, char **argv)
+int		get_chunk_size(int lst_size)
 {
-	int	i;
-	t_list *tmp;
-
-	i = 0;
-	(void)argc;
-	argv = ft_split(*argv, ' ');
-	while (argv[i])
-	{
-		tmp = ft_lstnew(ft_atoi(argv[i]));
-		ft_lstadd_back(pile_a, tmp);
-		i++;
-	}
+	if (lst_size <= 10)
+		return (3);
+	else if (lst_size <= 50)
+		return (7);
+	else if (lst_size <= 100)
+		return (18);
+	else if (lst_size <= 500)
+		return (45);
+	return 65;
 }
-
