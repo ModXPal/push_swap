@@ -29,7 +29,7 @@ LIBFTMAKE=		$(MAKE) -C ${LIBFT_PATH} bonus
 all:			${NAME}
 
 ${NAME}:    	${SRC_OBJS} pmake
-				${CC} ${SRC_OBJS} ${LIBFT_OBJS}
+				${CC} ${SRC_OBJS} ${LIBFT_OBJS} -o $(NAME)
 
 pmake:
 				${LIBFTMAKE}

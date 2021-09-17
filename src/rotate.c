@@ -6,7 +6,7 @@
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 11:22:09 by rcollas           #+#    #+#             */
-/*   Updated: 2021/08/31 18:07:15 by rcollas          ###   ########.fr       */
+/*   Updated: 2021/09/11 16:07:48 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ra(t_list **pile_a)
 	*pile_a = (*pile_a)->next;
 	(ft_lstlast(*pile_a))->next = first;
 	first->next = NULL;
-	ft_putstr_fd("ra \n", 1);
+	ft_putstr_fd("ra\n", 1);
 }
 
 void	rb(t_list **pile_b)
@@ -35,7 +35,7 @@ void	rb(t_list **pile_b)
 	*pile_b = (*pile_b)->next;
 	(ft_lstlast(*pile_b))->next = first;
 	first->next = NULL;
-	ft_putstr_fd("rb \n", 1);
+	ft_putstr_fd("rb\n", 1);
 }
 
 void	rr(t_list **pile_a, t_list **pile_b)
@@ -53,5 +53,5 @@ void	rr(t_list **pile_a, t_list **pile_b)
 	*pile_b = (*pile_b)->next;
 	(ft_lstlast(*pile_b))->next = first_b;
 	first_b->next = NULL;
-	ft_putstr_fd("rr \n", 1);
+	ft_putstr_fd("rr\n", 1);
 }
