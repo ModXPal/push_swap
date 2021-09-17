@@ -6,7 +6,7 @@
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 17:16:31 by rcollas           #+#    #+#             */
-/*   Updated: 2021/09/17 15:21:49 by rcollas          ###   ########.fr       */
+/*   Updated: 2021/09/17 17:19:43 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,6 @@ void	create_pile_a(t_list **pile_a, int argc, char **argv)
 		ft_lstadd_back(pile_a, tmp);
 		i++;
 	}
-}
-
-int	is_sorted(t_list *pile)
-{
-	if (pile->next == NULL)
-		return (1);
-	while (pile->content < pile->next->content && pile)
-	{
-		pile = pile->next;
-		if (pile->next == NULL)
-			return (1);
-	}
-	return (0);
 }
 
 int	is_sorted_b(t_list *pile)
@@ -99,36 +86,6 @@ int		is_min(t_list *pile_a, t_list *pile_b)
 		pile_b = pile_b->next;
 	}
 	return (1);
-}
-
-int		get_min(t_list *pile)
-{
-	int	min;
-
-	if (!pile)
-		return (0);
-	min = pile->content;
-	while (pile)
-	{
-		if (pile->content < min)
-			min = pile->content;
-		pile = pile->next;
-	}
-	return (min);
-}
-
-int		get_max(t_list *pile)
-{
-	int	max;
-
-	max = pile->content;
-	while (pile)
-	{
-		if (pile->content > max)
-			max = pile->content;
-		pile = pile->next;
-	}
-	return (max);
 }
 
 int		get_median(t_list *pile_a)
@@ -236,42 +193,6 @@ int		shorter_path(t_list *pile, int five_least)
 		return (DO_RR);
 }
 
-int	min_shorter_path(t_list *pile, int min)
-{
-	int i;
-	int	lst_size;
-
-	i = 0;
-	lst_size = ft_lstsize(pile);
-	while (pile->content > min && pile)
-	{
-		pile = pile->next;
-		i++;
-	}
-	if (i > lst_size / 2)
-		return (DO_RR);
-	else
-		return (DO_R);
-}
-
-int	max_shorter_path(t_list *pile, int max)
-{
-	int i;
-	int	lst_size;
-
-	i = 0;
-	lst_size = ft_lstsize(pile);
-	while (pile->content < max && pile)
-	{
-		pile = pile->next;
-		i++;
-	}
-	if (i > lst_size / 2)
-		return (DO_RR);
-	else
-		return (DO_R);
-}
-
 void	number_to_top(t_list **pile_a, int chunk)
 {
 	if (shorter_path(*pile_a, chunk) == DO_RR)
@@ -309,29 +230,6 @@ void	first_pass(t_list **pile_a, t_list **pile_b, int chunk, int i)
 	}
 }
 
-int	is_digit(char c)
-{
-	if ((c >= '0' && c <= '9') || c == ' ')
-		return (1);
-	return (0);
-}
-
-int	check_arguments(char **argv)
-{
-	int i;
-
-	i = 0;
-	while (argv[0][i])
-	{
-		if (argv[0][i] == '-')
-			i++;
-		if (!is_digit(argv[0][i]))
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
 void	get_arguments(int ac, char **av)
 {
 	int i;
@@ -349,157 +247,79 @@ void	get_arguments(int ac, char **av)
 	av = tmp;
 }
 
-void	sort_three(t_list **pile_a)
+int		get_chunk_size(int lst_size)
 {
-	if (is_sorted(*pile_a))
-			return ;
-	if (ft_lstlast(*pile_a)->content == get_max(*pile_a))
-		sa(pile_a);
-	else if ((*pile_a)->content > (*pile_a)->next->content && ft_lstlast(*pile_a)->content == get_min(*pile_a))
+	if (lst_size <= 10)
+		return (3);
+	else if (lst_size <= 50)
+		return (7);
+	else if (lst_size <= 100)
+		return (18);
+	else if (lst_size <= 500)
+		return (45);
+	return 65;
+}
+
+void	second_pass(t_list **pile_a, t_list **pile_b)
+{
+	int max_b;
+
+	max_b = get_max(*pile_b);
+	while (pile_b)
 	{
-		sa(pile_a);
-		rra(pile_a);
+		if (max_shorter_path(*pile_b, max_b) == DO_RR)
+		{
+			while ((*pile_b)->content < max_b)
+				rrb(pile_b);
+		}
+		else if (max_shorter_path(*pile_b, max_b) == DO_R)
+		{
+			while ((*pile_b)->content < max_b)
+				rb(pile_b);
+		}
+		pa(pile_a, pile_b);
+		if (pile_b)
+			max_b = get_max(*pile_b);
 	}
-	else if ((*pile_a)->content == get_max(*pile_a) && ft_lstlast(*pile_a)->content > (*pile_a)->next->content)
-		ra(pile_a);
-	else if ((*pile_a)->content == get_min(*pile_a) && (*pile_a)->next->content == get_max(*pile_a))
-	{
-		sa(pile_a);
-		ra(pile_a);
-	}
+}
+
+void	big_sort(t_list **pile_a, t_list **pile_b)
+{
+	int	lst_size;
+	int	chunk_size;
+	int	chunk;
+
+	lst_size = ft_lstsize(*pile_a);
+	chunk_size = get_chunk_size(lst_size);
+	chunk = cut_in_fifth(*pile_a, chunk_size);
+	first_pass(pile_a, pile_b, chunk, chunk_size);
+	second_pass(pile_a, pile_b);
+}
+
+void	push_swap(t_list **pile_a, t_list **pile_b)
+{
+	int	lst_size;
+
+	lst_size = ft_lstsize(*pile_a);
+	if (lst_size == 2)
+		sort_two(pile_a);
+	else if (lst_size == 3)
+		sort_three(pile_a);
+	else if (lst_size == 5)
+		sort_five(pile_a, pile_b);
 	else
-		rra(pile_a);
+		big_sort(pile_a, pile_b);
 }
-
-void	sort_two(t_list **pile_a)
-{
-	if ((*pile_a)->content == get_max(*pile_a))
-		sa(pile_a);
-}
-
-void	sort_five(t_list **pile_a, t_list **pile_b)
-{
-	int	i;
-
-	i = 0;
-	while (i++ < 2)
-	{
-		if (min_shorter_path(*pile_a, get_min(*pile_a)) == DO_R)
-		{
-			while ((*pile_a)->content != get_min(*pile_a))
-				ra(pile_a);
-		}
-		else
-		{
-			while ((*pile_a)->content != get_min(*pile_a))
-				rra(pile_a);
-		}
-		pb(pile_a, pile_b);
-	}
-	sort_three(pile_a);
-	pa(pile_a, pile_b);
-	pa(pile_a, pile_b);
-}
-
-int		check_duplicate(t_list *pile)
-{
-	t_list *ref;
-	t_list *start;
-
-	start = pile;
-	ref = pile;
-	while (pile)
-	{
-		ref = pile->next;
-		while (ref)
-		{
-			if (pile->content == ref->content)
-				return (TRUE);
-			ref = ref->next;
-		}
-		ref = pile->next;
-		pile = pile->next;
-	}
-	return (FALSE);
-}
-
-//int		check_maxint(t_list **pile_a)
-//{
-//}
 
 int	main(int argc, char **argv)
 {
 	t_list	*pile_a;
 	t_list	*pile_b;
-	int		lst_size;
-	int		max_b;
-	int		chunk;
-	int		i;
 
 	pile_a = NULL;
 	pile_b = NULL;
-	i = 5;
 	get_arguments(argc, argv);
-	if (!check_arguments(argv))
-	{
-		printf("Error\n");
+	if (check_input(&pile_a, argv, argc) == FAIL)
 		return (0);
-	}
-	create_pile_a(&pile_a, argc, argv);
-	if (check_duplicate(pile_a) == TRUE)
-	{
-		printf("Error\n");
-		return (0);
-	}
-	//print_pile(pile_a, pile_b);
-	lst_size = ft_lstsize(pile_a);
-	//print_pile(pile_a, pile_b);
-	if (is_sorted(pile_a))
-		return (0);
-	if (lst_size <= 10)
-		i = 3;
-	else if (lst_size <= 50)
-		i = 7;
-	else if (lst_size <= 100)
-		i = 18;
-	else if (lst_size <= 500)
-		i = 45;
-	if (lst_size == 2)
-	{
-		sort_two(&pile_a);
-		//print_pile(pile_a, pile_b);
-		return (0);
-	}
-	if (lst_size == 3)
-	{
-		sort_three(&pile_a);
-		//print_pile(pile_a, pile_b);
-		return (0);
-	}
-	if (lst_size == 5)
-	{
-		sort_five(&pile_a, &pile_b);
-		//print_pile(pile_a, pile_b);
-		return (0);
-	}
-	chunk = cut_in_fifth(pile_a, i);
-	first_pass(&pile_a, &pile_b, chunk, i);
-	max_b = get_max(pile_b);
-	while (pile_b)
-	{
-		if (max_shorter_path(pile_b, max_b) == DO_RR)
-		{
-			while (pile_b->content < max_b)
-				rrb(&pile_b);
-		}
-		else if (max_shorter_path(pile_b, max_b) == DO_R)
-		{
-			while (pile_b->content < max_b)
-				rb(&pile_b);
-		}
-		pa(&pile_a, &pile_b);
-		if (pile_b)
-			max_b = get_max(pile_b);
-	}
-	//print_pile(pile_a, pile_b);
+	push_swap(&pile_a, &pile_b);
 }
