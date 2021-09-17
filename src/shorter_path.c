@@ -6,7 +6,7 @@
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:46:53 by rcollas           #+#    #+#             */
-/*   Updated: 2021/09/17 17:19:46 by rcollas          ###   ########.fr       */
+/*   Updated: 2021/09/17 17:45:17 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	min_shorter_path(t_list *pile, int min)
 {
-	int i;
+	int	i;
 	int	lst_size;
 
 	i = 0;
@@ -32,7 +32,7 @@ int	min_shorter_path(t_list *pile, int min)
 
 int	max_shorter_path(t_list *pile, int max)
 {
-	int i;
+	int	i;
 	int	lst_size;
 
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:34:19 by rcollas           #+#    #+#             */
-/*   Updated: 2021/09/17 17:19:45 by rcollas          ###   ########.fr       */
+/*   Updated: 2021/09/17 17:43:27 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	check_arguments(char **argv)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (argv[0][i])
@@ -28,10 +28,10 @@ int	check_arguments(char **argv)
 	return (1);
 }
 
-int		check_duplicate(t_list *pile)
+int	check_duplicate(t_list *pile)
 {
-	t_list *ref;
-	t_list *start;
+	t_list	*ref;
+	t_list	*start;
 
 	start = pile;
 	ref = pile;

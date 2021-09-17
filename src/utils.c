@@ -6,13 +6,13 @@
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:38:10 by rcollas           #+#    #+#             */
-/*   Updated: 2021/09/17 17:38:18 by rcollas          ###   ########.fr       */
+/*   Updated: 2021/09/17 17:46:32 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int		get_min(t_list *pile)
+int	get_min(t_list *pile)
 {
 	int	min;
 
@@ -28,7 +28,7 @@ int		get_min(t_list *pile)
 	return (min);
 }
 
-int		get_max(t_list *pile)
+int	get_max(t_list *pile)
 {
 	int	max;
 
@@ -62,7 +62,7 @@ int	is_sorted(t_list *pile)
 	return (0);
 }
 
-int		get_chunk_size(int lst_size)
+int	get_chunk_size(int lst_size)
 {
 	if (lst_size <= 10)
 		return (3);
@@ -72,5 +72,5 @@ int		get_chunk_size(int lst_size)
 		return (18);
 	else if (lst_size <= 500)
 		return (45);
-	return 65;
+	return (65);
 }

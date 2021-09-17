@@ -6,7 +6,7 @@
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 11:22:49 by rcollas           #+#    #+#             */
-/*   Updated: 2021/09/11 16:07:53 by rcollas          ###   ########.fr       */
+/*   Updated: 2021/09/17 17:48:41 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	rra(t_list **pile_a)
 {
-	if (!(*pile_a)->next)
-		return ;
 	t_list	*next_to_last;
 	t_list	*last_a;
 
+	if (!(*pile_a)->next)
+		return ;
 	next_to_last = ft_lstnext_to_last(*pile_a);
 	last_a = ft_lstlast(*pile_a);
 	last_a->next = *pile_a;
@@ -29,11 +29,11 @@ void	rra(t_list **pile_a)
 
 void	rrb(t_list **pile_b)
 {
-	if (!(*pile_b)->next)
-		return ;
 	t_list	*next_to_last;
 	t_list	*last_b;
 
+	if (!(*pile_b)->next)
+		return ;
 	next_to_last = ft_lstnext_to_last(*pile_b);
 	last_b = ft_lstlast(*pile_b);
 	last_b->next = *pile_b;
@@ -44,13 +44,13 @@ void	rrb(t_list **pile_b)
 
 void	rrr(t_list **pile_a, t_list **pile_b)
 {
-	if (!(*pile_a)->next || !(*pile_b)->next)
-		return ;
 	t_list	*next_to_last_a;
 	t_list	*next_to_last_b;
 	t_list	*last_a;
 	t_list	*last_b;
 
+	if (!(*pile_a)->next || !(*pile_b)->next)
+		return ;
 	next_to_last_a = ft_lstnext_to_last(*pile_a);
 	next_to_last_b = ft_lstnext_to_last(*pile_b);
 	last_a = ft_lstlast(*pile_a);

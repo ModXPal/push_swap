@@ -6,7 +6,7 @@
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:41:54 by rcollas           #+#    #+#             */
-/*   Updated: 2021/09/17 17:19:47 by rcollas          ###   ########.fr       */
+/*   Updated: 2021/09/17 17:49:28 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,20 @@ void	sort_two(t_list **pile_a)
 void	sort_three(t_list **pile_a)
 {
 	if (is_sorted(*pile_a))
-			return ;
+		return ;
 	if (ft_lstlast(*pile_a)->content == get_max(*pile_a))
 		sa(pile_a);
-	else if ((*pile_a)->content > (*pile_a)->next->content && ft_lstlast(*pile_a)->content == get_min(*pile_a))
+	else if ((*pile_a)->content > (*pile_a)->next->content
+		&& ft_lstlast(*pile_a)->content == get_min(*pile_a))
 	{
 		sa(pile_a);
 		rra(pile_a);
 	}
-	else if ((*pile_a)->content == get_max(*pile_a) && ft_lstlast(*pile_a)->content > (*pile_a)->next->content)
+	else if ((*pile_a)->content == get_max(*pile_a)
+		&& ft_lstlast(*pile_a)->content > (*pile_a)->next->content)
 		ra(pile_a);
-	else if ((*pile_a)->content == get_min(*pile_a) && (*pile_a)->next->content == get_max(*pile_a))
+	else if ((*pile_a)->content == get_min(*pile_a)
+		&& (*pile_a)->next->content == get_max(*pile_a))
 	{
 		sa(pile_a);
 		ra(pile_a);

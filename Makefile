@@ -13,6 +13,12 @@ SRC_FILES=		src/main.c \
 				src/push.c \
 				src/rotate.c \
 				src/reverse_rotate.c \
+				src/big_sort.c \
+				src/big_sort_utils.c \
+				src/check_input.c \
+				src/shorter_path.c \
+				src/sort.c \
+				src/utils.c \
 
 SRC_OBJS=		${SRC_FILES:.c=.o}
 

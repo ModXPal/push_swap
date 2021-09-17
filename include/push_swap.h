@@ -6,7 +6,7 @@
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:49:06 by rcollas           #+#    #+#             */
-/*   Updated: 2021/09/17 17:38:19 by rcollas          ###   ########.fr       */
+/*   Updated: 2021/09/17 17:50:08 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # define TRUE 1
 # define DO_RR 1
 # define DO_R 0
-#include "../libft/includes/libft.h"
-#include <stdio.h>
+# include "../libft/includes/libft.h"
+# include <stdio.h>
 
 void	sa(t_list **pile_a);
 void	sb(t_list **pile_b);

@@ -6,7 +6,7 @@
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 17:16:31 by rcollas           #+#    #+#             */
-/*   Updated: 2021/09/17 17:38:17 by rcollas          ###   ########.fr       */
+/*   Updated: 2021/09/17 17:48:12 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	create_pile_a(t_list **pile_a, int argc, char **argv)
 {
-	int	i;
-	t_list *tmp;
+	int		i;
+	t_list	*tmp;
 
 	i = 0;
 	(void)argc;
@@ -55,8 +55,8 @@ void	print_pile(t_list *pile_a, t_list *pile_b)
 
 void	get_arguments(int ac, char **av)
 {
-	int i;
-	char **tmp;
+	int		i;
+	char	**tmp;
 
 	i = 1;
 	tmp = av;

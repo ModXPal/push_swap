@@ -6,17 +6,17 @@
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 17:30:46 by rcollas           #+#    #+#             */
-/*   Updated: 2021/09/17 17:38:20 by rcollas          ###   ########.fr       */
+/*   Updated: 2021/09/17 17:47:54 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int		get_chunk(t_list *pile, int size)
+int	get_chunk(t_list *pile, int size)
 {
-	int	i;
-	int	min;
-	int new_min;
+	int		i;
+	int		min;
+	int		new_min;
 	t_list	*start;
 
 	i = 1;
@@ -40,7 +40,7 @@ int		get_chunk(t_list *pile, int size)
 	return (new_min);
 }
 
-int	 get_position(t_list *pile, int chunk)
+int	get_position(t_list *pile, int chunk)
 {
 	int	j;
 	int	position;
@@ -57,11 +57,11 @@ int	 get_position(t_list *pile, int chunk)
 	return (position);
 }
 
-int		shorter_path(t_list *pile, int chunk)
+int	shorter_path(t_list *pile, int chunk)
 {
-	int i;
-	int	position;
-	int	lst_size;
+	int		i;
+	int		position;
+	int		lst_size;
 	t_list	*start;
 
 	i = 0;

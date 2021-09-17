@@ -6,7 +6,7 @@
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 11:21:32 by rcollas           #+#    #+#             */
-/*   Updated: 2021/09/11 15:36:23 by rcollas          ###   ########.fr       */
+/*   Updated: 2021/09/17 17:43:58 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	pb(t_list **pile_a, t_list **pile_b)
 		ft_putstr_fd("pb\n", 1);
 	}
 }
-
 
 void	pa(t_list **pile_a, t_list **pile_b)
 {
