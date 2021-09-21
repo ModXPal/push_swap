@@ -6,7 +6,7 @@
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 17:23:18 by rcollas           #+#    #+#             */
-/*   Updated: 2021/09/17 17:41:56 by rcollas          ###   ########.fr       */
+/*   Updated: 2021/09/22 01:10:53 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	second_pass(t_list **pile_a, t_list **pile_b)
 	int	max_b;
 
 	max_b = get_max(*pile_b);
-	while (pile_b)
+	while (*pile_b)
 	{
 		if (max_shorter_path(*pile_b, max_b) == DO_RR)
 		{
@@ -53,7 +53,7 @@ void	second_pass(t_list **pile_a, t_list **pile_b)
 				rb(pile_b);
 		}
 		pa(pile_a, pile_b);
-		if (pile_b)
+		if (*pile_b)
 			max_b = get_max(*pile_b);
 	}
 }

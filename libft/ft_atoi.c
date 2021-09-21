@@ -6,7 +6,7 @@
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 16:46:33 by rcollas           #+#    #+#             */
-/*   Updated: 2021/05/26 12:14:37 by rcollas          ###   ########.fr       */
+/*   Updated: 2021/09/22 00:41:29 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ static	int	ft_is_space(char c)
 	return (0);
 }
 
-int	ft_atoi(const char *nptr)
+long	ft_atoi(const char *nptr)
 {
-	int						sign;
-	unsigned long long int	nb;
+	int			sign;
+	long long	nb;
 
 	nb = 0;
 	sign = 1;
@@ -46,9 +46,9 @@ int	ft_atoi(const char *nptr)
 		nb = nb * 10 + *nptr - 48;
 		nptr++;
 	}
-	if (nb > 9223372036854775807 && sign == 1)
-		return (-1);
-	else if (nb > 9223372036854775807 && sign == -1)
-		return (0);
+	if (nb * sign > 2147483647)
+		return (2147483650);
+	else if (nb * sign < -2147483648)
+		return (2147483650);
 	return (nb * sign);
 }

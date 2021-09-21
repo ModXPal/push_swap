@@ -6,7 +6,7 @@
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 17:16:31 by rcollas           #+#    #+#             */
-/*   Updated: 2021/09/17 17:48:12 by rcollas          ###   ########.fr       */
+/*   Updated: 2021/09/22 01:04:12 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ void	push_swap(t_list **pile_a, t_list **pile_b)
 		sort_two(pile_a);
 	else if (lst_size == 3)
 		sort_three(pile_a);
+	else if (lst_size == 4)
+		sort_four(pile_a, pile_b);
 	else if (lst_size == 5)
 		sort_five(pile_a, pile_b);
 	else

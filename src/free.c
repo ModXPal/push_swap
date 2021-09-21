@@ -6,7 +6,7 @@
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 13:57:44 by rcollas           #+#    #+#             */
-/*   Updated: 2021/09/20 13:58:05 by rcollas          ###   ########.fr       */
+/*   Updated: 2021/09/22 00:46:24 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	free_arg(char **argv)
 int	free_path(char **path)
 {
 	int	i;
+
 	i = -1;
 	while (path[++i])
 		free(path[i]);

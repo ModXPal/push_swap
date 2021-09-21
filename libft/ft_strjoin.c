@@ -6,7 +6,7 @@
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 16:51:50 by rcollas           #+#    #+#             */
-/*   Updated: 2021/05/25 17:56:09 by rcollas          ###   ########.fr       */
+/*   Updated: 2021/09/22 00:40:47 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ static	int	ft_strlen(char const *str)
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int		s1_len;
-	int		s2_len;
-	int		i;
-	char	*str;
+	int			s1_len;
+	int			s2_len;
+	int			i;
+	char		*str;
 	char const	*s2_cp;
 
 	if (!s1 || !s2)

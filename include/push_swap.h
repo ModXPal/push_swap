@@ -6,7 +6,7 @@
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:49:06 by rcollas           #+#    #+#             */
-/*   Updated: 2021/09/17 17:50:08 by rcollas          ###   ########.fr       */
+/*   Updated: 2021/09/22 00:45:52 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	rr(t_list **pile_a, t_list **pile_b);
 void	rrr(t_list **pile_a, t_list **pile_b);
 void	sort_two(t_list **pile_a);
 void	sort_three(t_list **pile_a);
+void	sort_four(t_list **pile_a, t_list **pile_b);
 void	sort_five(t_list **pile_a, t_list **pile_b);
 void	create_pile_a(t_list **pile_a, char **argv);
 void	big_sort(t_list **pile_a, t_list **pile_b);

@@ -6,7 +6,7 @@
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 16:34:19 by rcollas           #+#    #+#             */
-/*   Updated: 2021/09/17 17:43:27 by rcollas          ###   ########.fr       */
+/*   Updated: 2021/09/22 01:06:13 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int	check_arguments(char **argv)
 	i = 0;
 	while (argv[0][i + 1])
 	{
-		//if (argv[0][i] == ' ')
-		//	i++;
+		if (argv[0][i] == ' ')
+			i++;
 		if (argv[0][i] == '-')
 			i++;
-		if (!(is_digit(argv[0][i])) && !(argv[0][i] == ' '))
+		if (!is_digit(argv[0][i]))
 			return (0);
 		i++;
 	}
@@ -65,6 +65,17 @@ int	check_empty_arg(char **argv, int argc)
 	return (0);
 }
 
+int	check_maxint(t_list *pile)
+{
+	while (pile)
+	{
+		if (pile->content > 2147483647)
+			return (1);
+		pile = pile->next;
+	}
+	return (0);
+}
+
 int	check_input(t_list **pile_a, char **argv, int argc)
 {
 	if (argc < 2)
@@ -83,7 +94,7 @@ int	check_input(t_list **pile_a, char **argv, int argc)
 		return (0);
 	}
 	create_pile_a(pile_a, argv);
-	if (check_duplicate(*pile_a) == TRUE)
+	if (check_duplicate(*pile_a) == TRUE || check_maxint(*pile_a) == TRUE)
 	{
 		printf("Error\n");
 		return (free_pile(pile_a) + free_path(argv));
