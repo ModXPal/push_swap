@@ -11,3 +11,36 @@
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
+
+int	free_pile(t_list **pile)
+{
+	t_list	*tmp;
+
+	while (*pile)
+	{
+		tmp = (*pile)->next;
+		free(*pile);
+		*pile = tmp;
+	}
+	return (0);
+}
+
+int	free_arg(char **argv)
+{
+	int	i;
+
+	i = -1;
+	while (argv[++i])
+		free(argv[i]);
+	free(argv);
+	return (0);
+}
+
+int	free_path(char **path)
+{
+	int	i;
+	i = -1;
+	while (path[++i])
+		free(path[i]);
+	return (0);
+}

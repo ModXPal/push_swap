@@ -12,13 +12,12 @@
 
 #include "../include/push_swap.h"
 
-void	create_pile_a(t_list **pile_a, int argc, char **argv)
+void	create_pile_a(t_list **pile_a, char **argv)
 {
 	int		i;
 	t_list	*tmp;
 
 	i = 0;
-	(void)argc;
 	argv = ft_split(*argv, ' ');
 	while (argv[i])
 	{
@@ -26,6 +25,7 @@ void	create_pile_a(t_list **pile_a, int argc, char **argv)
 		ft_lstadd_back(pile_a, tmp);
 		i++;
 	}
+	free_arg(argv);
 }
 
 void	print_pile(t_list *pile_a, t_list *pile_b)
@@ -57,17 +57,21 @@ void	get_arguments(int ac, char **av)
 {
 	int		i;
 	char	**tmp;
+	char	*to_free;
 
 	i = 1;
 	tmp = av;
 	*av = "";
+	to_free = NULL;
 	while (i < ac)
 	{
 		tmp[i] = ft_strjoin(tmp[i], " ");
 		*av = ft_strjoin(*av, tmp[i]);
+		if (to_free)
+			free(to_free);
+		to_free = *av;
 		i++;
 	}
-	av = tmp;
 }
 
 void	push_swap(t_list **pile_a, t_list **pile_b)
@@ -95,5 +99,9 @@ int	main(int argc, char **argv)
 	get_arguments(argc, argv);
 	if (check_input(&pile_a, argv, argc) == FAIL)
 		return (0);
+	print_pile(pile_a, pile_b);
 	push_swap(&pile_a, &pile_b);
+	print_pile(pile_a, pile_b);
+	free_pile(&pile_a);
+	free_path(argv);
 }

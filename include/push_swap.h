@@ -35,7 +35,7 @@ void	rrr(t_list **pile_a, t_list **pile_b);
 void	sort_two(t_list **pile_a);
 void	sort_three(t_list **pile_a);
 void	sort_five(t_list **pile_a, t_list **pile_b);
-void	create_pile_a(t_list **pile_a, int argc, char **argv);
+void	create_pile_a(t_list **pile_a, char **argv);
 void	big_sort(t_list **pile_a, t_list **pile_b);
 void	number_to_top(t_list **pile_a, int chunk);
 int		get_min(t_list *pile);
@@ -50,5 +50,8 @@ int		check_input(t_list **pile_a, char **argv, int arg);
 int		get_chunk_size(int lst_size);
 int		get_chunk(t_list *pile, int size);
 int		shorter_path(t_list *pile, int chunk);
+int		free_pile(t_list **pile);
+int		free_arg(char **argv);
+int		free_path(char **path);
 
 #endif

@@ -19,6 +19,7 @@ SRC_FILES=		src/main.c \
 				src/shorter_path.c \
 				src/sort.c \
 				src/utils.c \
+				src/free.c \
 
 SRC_OBJS=		${SRC_FILES:.c=.o}
 
