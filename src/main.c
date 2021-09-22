@@ -106,4 +106,5 @@ int	main(int argc, char **argv)
 	print_pile(pile_a, pile_b);
 	free_pile(&pile_a);
 	free_path(argv);
+	printf("test\n");
 }
