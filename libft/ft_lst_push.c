@@ -10,13 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
 void	ft_lstpush(t_list **first_lst, t_list *scnd_list)
 {
 	if (!*first_lst)
-		*first_lst = scnd_list;
-		//*first_lst = ft_lstnew(scnd_list->content);
+		*first_lst = ft_lstnew(scnd_list->content);
 	else
 		ft_lstadd_front(first_lst, scnd_list);
 }

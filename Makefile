@@ -1,53 +1,47 @@
-NAME=			push_swap	
+NAME=		push_swap	
 
-SRC_PATH=		src/
+SRC_PATH=	src/
 
-LIBFT_PATH=		libft/
+LIBFT_PATH=	libft/
 
-LIBFT_LIB=		libft.a
+LIBFT_LIB=	libft/libft.a
 
 INCLUDE_PATH=	include/
 
-SRC_FILES=		src/main.c \
-				src/swap.c \
-				src/push.c \
-				src/rotate.c \
-				src/reverse_rotate.c \
-				src/big_sort.c \
-				src/big_sort_utils.c \
-				src/check_input.c \
-				src/shorter_path.c \
-				src/sort.c \
-				src/utils.c \
-				src/free.c \
+SRC_FILES=	src/main.c \
+		src/swap.c \
+		src/push.c \
+		src/rotate.c \
+		src/reverse_rotate.c \
+		src/big_sort.c \
+		src/big_sort_utils.c \
+		src/check_input.c \
+		src/shorter_path.c \
+		src/sort.c \
+		src/utils.c \
+		src/free.c \
 
-SRC_OBJS=		${SRC_FILES:.c=.o}
+SRC_OBJS=	${SRC_FILES:.c=.o}
 
-CC= 			gcc
+CC= 		clang	
 
-CFLAGS=			-Wall -Wextra -Werror
+CFLAGS=		-Wall -Wextra -Werror
 
-RM=				rm -f
+RM=		rm -f
 
-LIBFT_OBJS=		${LIBFT_PATH}*.o
+all:		${NAME}
 
-LIBFTMAKE=		$(MAKE) -C ${LIBFT_PATH} bonus
-
-all:			${NAME}
-
-${NAME}:    	${SRC_OBJS} pmake
-				${CC} ${SRC_OBJS} ${LIBFT_OBJS} -o $(NAME)
-
-pmake:
-				${LIBFTMAKE}
+${NAME}:    	${SRC_OBJS} 
+			$(MAKE) -C $(LIBFT_PATH)
+			${CC} ${SRC_OBJS} ${LIBFT_LIB} -o $(NAME)
 
 clean:
-				make -C ${LIBFT_PATH} clean
-				${RM} ${SRC_OBJS}
+			@$(MAKE) -C ${LIBFT_PATH} clean
+			${RM} ${SRC_OBJS}
 
-fclean: 		clean
-				${RM} ${NAME} ${LIBFT_PATH}${LIBFT_LIB}
+fclean: 	clean
+			${RM} ${NAME} ${LIBFT_LIB}
 
 re:         	fclean all
 
-.PHONY:        all clean fclean re pmake
+.PHONY:        all clean fclean re

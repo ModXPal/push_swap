@@ -32,8 +32,7 @@ SRCS		= ft_memset.c\
 			  ft_putstr_fd.c\
 			  ft_putendl_fd.c\
 			  ft_putnbr_fd.c\
-
-BONUS		= ft_lstnew.c\
+			  ft_lstnew.c\
 			  ft_lstadd_front.c\
 			  ft_lstsize.c\
 			  ft_lstlast.c\
@@ -49,15 +48,13 @@ BONUS		= ft_lstnew.c\
 
 OBJS		= $(SRCS:.c=.o)
 
-OBJS_BONUS	= $(BONUS:.c=.o)
-
 NAME		= libft.a
 
-CC			= gcc
+CC			= clang 
 
 RM			= rm -rf
 
-CFLAGS		= -Wall -Wextra -Werror -Iincludes
+CFLAGS		= -Wall -Wextra -Werror -Iinclude
 
 all:		$(NAME)
 
@@ -67,12 +64,6 @@ all:		$(NAME)
 $(NAME):	$(OBJS)
 				@ar rc $(NAME) $^
 				@echo "$(NAME) created"
-				@ranlib $(NAME)
-				@echo "$(NAME) table of contents added"
-
-bonus:		$(OBJS) $(OBJS_BONUS)
-				@ar rc $(NAME) $^ 
-				@echo "$(NAME) created with bonus"
 				@ranlib $(NAME)
 				@echo "$(NAME) table of contents added"
 
@@ -86,4 +77,4 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY:		all clean fclean re bonus
+.PHONY:		all clean fclean re

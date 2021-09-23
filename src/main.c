@@ -101,10 +101,7 @@ int	main(int argc, char **argv)
 	get_arguments(argc, argv);
 	if (check_input(&pile_a, argv, argc) == FAIL)
 		return (0);
-	print_pile(pile_a, pile_b);
 	push_swap(&pile_a, &pile_b);
-	print_pile(pile_a, pile_b);
 	free_pile(&pile_a);
 	free_path(argv);
-	printf("test\n");
 }

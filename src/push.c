@@ -15,18 +15,16 @@
 void	pb(t_list **pile_a, t_list **pile_b)
 {
 	t_list	*tmp;
-	//t_list	*to_free;
 
 	if (*pile_a)
 	{
 		tmp = *pile_a;
-	//	to_free = *pile_a;
 		(*pile_a) = (*pile_a)->next;
 		ft_lstpush(pile_b, tmp);
+		if (!(*pile_b)->next)
+			free(tmp);
 		ft_putstr_fd("pb\n", 1);
 	}
-	//if (ft_lstsize(*pile_b) == 1)
-	//	free(to_free);
 }
 
 void	pa(t_list **pile_a, t_list **pile_b)
@@ -38,6 +36,8 @@ void	pa(t_list **pile_a, t_list **pile_b)
 		tmp = *pile_b;
 		(*pile_b) = (*pile_b)->next;
 		ft_lstpush(pile_a, tmp);
+		if (!(*pile_a)->next)
+			free(tmp);
 		ft_putstr_fd("pa\n", 1);
 	}
 }

@@ -80,23 +80,23 @@ int	check_input(t_list **pile_a, char **argv, int argc)
 {
 	if (argc < 2)
 	{
-		printf("Error\n");
+		write(2, "Error\n", 6);
 		return (0);
 	}
 	if (check_arguments(argv) == FAIL)
 	{
-		printf("Error\n");
-		return (0);
+		write(2, "Error\n", 6);
+		return (free_path(argv));
 	}
 	if (check_empty_arg(argv, argc) == TRUE)
 	{
-		printf("Error\n");
-		return (0);
+		write(2, "Error\n", 6);
+		return (free_path(argv));
 	}
 	create_pile_a(pile_a, argv);
 	if (check_duplicate(*pile_a) == TRUE || check_maxint(*pile_a) == TRUE)
 	{
-		printf("Error\n");
+		write(2, "Error\n", 6);
 		return (free_pile(pile_a) + free_path(argv));
 	}
 	if (is_sorted(*pile_a))

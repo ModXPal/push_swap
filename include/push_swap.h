@@ -18,7 +18,7 @@
 # define TRUE 1
 # define DO_RR 1
 # define DO_R 0
-# include "../libft/includes/libft.h"
+# include "../libft/include/libft.h"
 # include <stdio.h>
 
 void	sa(t_list **pile_a);
